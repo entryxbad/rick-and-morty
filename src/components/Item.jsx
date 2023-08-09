@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Item = ({ name, status, species, gender, location, image }) => {
     return (
         <div className='flex space-x-5 bg-[#444955] rounded-xl'>
