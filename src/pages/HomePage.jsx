@@ -10,15 +10,24 @@ const HomePage = () => {
     const [selectedStatus, setSelectedStatus] = useState('')
     const [selectedGender, setSelectedGender] = useState('')
 
+    const checkFilters = () => {
+        if (search !== '') {
+            searchCharacter(search, selectedSpecies, selectedStatus, selectedGender)
+        } else {
+            searchCharacter('', selectedSpecies, selectedStatus, selectedGender)
+        }
+    }
+
     const handleKey = (e) => {
         if (e.key === 'Enter') {
-            searchCharacter(search)
+            checkFilters()
             setSearch('')
         }
     }
 
     const buttonClick = () => {
         searchCharacter(search, selectedSpecies, selectedStatus, selectedGender)
+        checkFilters()
         setSearch('')
     }
 
@@ -52,13 +61,15 @@ const HomePage = () => {
     const searchCharacter = (strName, typeSpecies, typeStatus, typeGender) => {
         let apiUrl = 'https://rickandmortyapi.com/api/character'
 
-        if (strName || typeSpecies || typeStatus || typeGender) {
-            apiUrl += '?'
+        const queryParams = []
 
-            if (strName) apiUrl += `name=${strName}`
-            if (typeSpecies) apiUrl += `&species=${typeSpecies}`
-            if (typeStatus) apiUrl += `&status=${typeStatus}`
-            if (typeGender) apiUrl += `&gender=${typeGender}`
+        if (strName) queryParams.push(`name=${strName}`)
+        if (typeSpecies) queryParams.push(`species=${typeSpecies}`)
+        if (typeStatus) queryParams.push(`status=${typeStatus}`)
+        if (typeGender) queryParams.push(`gender=${typeGender}`)
+
+        if (queryParams.length > 0) {
+            apiUrl += `?${queryParams.join('&')}`
         }
 
         fetch(apiUrl)
