@@ -3,6 +3,7 @@ import Item from '../components/Item'
 import { fetchAllCharacters } from '../config/api'
 import NotFound from './NotFound'
 import Filters from '../components/Filters'
+import PopupItem from '../components/PopupItem'
 
 const HomePage = () => {
     const [mainData, setMainData] = useState([])
@@ -10,6 +11,11 @@ const HomePage = () => {
     const [selectedSpecies, setSelectedSpecies] = useState('')
     const [selectedStatus, setSelectedStatus] = useState('')
     const [selectedGender, setSelectedGender] = useState('')
+    const [visible, setVisible] = useState(false)
+
+    const togglePopup = () => {
+        setVisible(!visible)
+    }
 
     useEffect(() => {
         fetchAllCharacters()
@@ -76,10 +82,12 @@ const HomePage = () => {
                             species={item.species}
                             gender={item.gender}
                             location={item.location.name}
+                            togglePopup={togglePopup}
                         />
                     ))
                 )}
             </div>
+            {visible && <PopupItem togglePopup={togglePopup} />}
         </div>
     )
 }

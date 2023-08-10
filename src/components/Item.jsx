@@ -1,15 +1,6 @@
-import { useState } from 'react'
-import PopupItem from './PopupItem'
-
-const Item = ({ name, status, species, gender, location, image, id }) => {
-    const [visible, setVisible] = useState(false)
-
-    const togglePopup = () => {
-        setVisible(!visible)
-    }
-
+const Item = ({ name, status, species, gender, location, image, id, togglePopup }) => {
     return (
-        <div className='flex space-x-5 bg-[#444955] rounded-xl'>
+        <div className='flex space-x-5 bg-[#444955] rounded-xl relative'>
             {/* Image */}
             <div>
                 <img className='rounded-l-xl h-56' src={image} alt={name} />
@@ -38,7 +29,12 @@ const Item = ({ name, status, species, gender, location, image, id }) => {
                     <p className='text-white text-lg'>{gender}</p>
                 </div>
             </div>
-            {visible && <PopupItem />}
+            <div
+                className='absolute right-3 bottom-3 bg-[#2c3038] rounded-xl p-2 text-white hover:text-black hover:bg-white'
+                onClick={togglePopup}
+            >
+                <button>Show more</button>
+            </div>
         </div>
     )
 }
