@@ -46,6 +46,7 @@ const Filters = ({
 
     return (
         <div className='flex justify-between p-5 my-5 items-center bg-[#444955] rounded-xl'>
+            {/* Search */}
             <div>
                 <input
                     className='px-2 py-2 rounded-xl'
@@ -62,6 +63,8 @@ const Filters = ({
                     Search
                 </button>
             </div>
+
+            {/* Filters */}
             <div className='text-white'>
                 Filter by species:
                 <select

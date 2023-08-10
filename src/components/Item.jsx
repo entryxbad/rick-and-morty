@@ -1,4 +1,13 @@
-const Item = ({ name, status, species, gender, location, image }) => {
+import { useState } from 'react'
+import PopupItem from './PopupItem'
+
+const Item = ({ name, status, species, gender, location, image, id }) => {
+    const [visible, setVisible] = useState(false)
+
+    const togglePopup = () => {
+        setVisible(!visible)
+    }
+
     return (
         <div className='flex space-x-5 bg-[#444955] rounded-xl'>
             {/* Image */}
@@ -8,7 +17,9 @@ const Item = ({ name, status, species, gender, location, image }) => {
             {/* Description */}
             <div className='flex flex-col justify-center'>
                 <div>
-                    <p className='text-white text-4xl font-bold'>{name}</p>
+                    <span className='text-white text-4xl font-bold' onClick={togglePopup}>
+                        {name}
+                    </span>
                     <span className='text-white text-xl flex items-center'>
                         <span
                             className={`h-2 w-2 rounded-full mr-2 ${
@@ -27,6 +38,7 @@ const Item = ({ name, status, species, gender, location, image }) => {
                     <p className='text-white text-lg'>{gender}</p>
                 </div>
             </div>
+            {visible && <PopupItem />}
         </div>
     )
 }

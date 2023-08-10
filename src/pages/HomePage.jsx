@@ -69,6 +69,7 @@ const HomePage = () => {
                     mainData.map((item) => (
                         <Item
                             key={item.id}
+                            id={item.id}
                             image={item.image}
                             name={item.name}
                             status={item.status}
