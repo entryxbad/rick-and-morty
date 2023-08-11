@@ -12,8 +12,10 @@ const HomePage = () => {
     const [selectedStatus, setSelectedStatus] = useState('')
     const [selectedGender, setSelectedGender] = useState('')
     const [visible, setVisible] = useState(false)
+    const [selectedCharacterId, setSelectedCharacterId] = useState(null)
 
-    const togglePopup = () => {
+    const togglePopup = (characterId) => {
+        setSelectedCharacterId(characterId)
         setVisible(!visible)
     }
 
@@ -82,12 +84,12 @@ const HomePage = () => {
                             species={item.species}
                             gender={item.gender}
                             location={item.location.name}
-                            togglePopup={togglePopup}
+                            togglePopup={() => togglePopup(item.id)}
                         />
                     ))
                 )}
             </div>
-            {visible && <PopupItem togglePopup={togglePopup} />}
+            {visible && <PopupItem togglePopup={() => togglePopup(null)} characterId={selectedCharacterId} />}
         </div>
     )
 }
