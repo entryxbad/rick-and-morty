@@ -15,8 +15,8 @@ const PopupItem = ({ togglePopup, characterId }) => {
     }, [characterId])
 
     return (
-        <div className='fixed inset-0 flex justify-center items-center bg-black bg-opacity-50'>
-            <div className='flex flex-col space-y-2 bg-[#444955] p-5 rounded-xl text-white text-lg'>
+        <div className='fixed inset-0 flex min-w-[23.5rem] justify-center items-center bg-black bg-opacity-50'>
+            <div className='flex flex-col space-y-2 bg-[#444955] p-5 rounded-xl text-white text-base md:text-xl'>
                 {characterData ? (
                     <>
                         <p>Name: {characterData.name}</p>

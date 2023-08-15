@@ -51,9 +51,8 @@ const HomePage = () => {
                 console.log('Error from search', error)
             })
     }
-
     return (
-        <div className='flex-1 justify-center items-center mx-5 pb-5'>
+        <div className='mx-5 pb-5'>
             {/* Filter */}
             <Filters
                 search={search}
@@ -68,9 +67,9 @@ const HomePage = () => {
             />
 
             {/* Content */}
-            <div className='sm:grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4'>
+            <div className='grid gap-4 grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3'>
                 {!mainData ? (
-                    <div className='col-span-3 flex justify-center items-center'>
+                    <div className='flex justify-center items-center'>
                         <NotFound />
                     </div>
                 ) : (

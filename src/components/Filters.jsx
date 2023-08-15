@@ -45,11 +45,11 @@ const Filters = ({
     }
 
     return (
-        <div className='sm:flex-col md:flex xl:flex-row p-5 my-5 bg-[#444955] rounded-xl justify-between'>
+        <div className='p-5 my-5 bg-[#444955] rounded-xl justify-between lg:flex'>
             {/* Search */}
-            <div className='sm:mb-5 xl:mb-0 flex'>
+            <div className='flex justify-between mb-5 md:justify-normal lg:mb-0'>
                 <input
-                    className='sm:w-full xl:w-72 2xl:w-96 px-2 py-2 rounded-xl'
+                    className='px-2 rounded-xl w-full lg:w-56 xl:w-[26rem]'
                     type='search'
                     placeholder='Enter name...'
                     onChange={(e) => setSearch(e.target.value)}
@@ -65,12 +65,12 @@ const Filters = ({
             </div>
 
             {/* Filters */}
-            <div className='flex items-center 2xl:space-x-32'>
+            <div className='space-y-2 md:flex items-baseline 2xl:space-x-20'>
                 <div className='text-white'>
-                    Filter by species:
+                    Species:
                     <select
                         onChange={(e) => handleFilterSpecies(e.target.value)}
-                        className='sm:ml-0 lg:ml-2 text-black cursor-pointer'
+                        className=' text-black cursor-pointer ml-2'
                     >
                         <option value={'#'}>Choose species</option>
                         <option value={'human'}>Human</option>
@@ -83,10 +83,10 @@ const Filters = ({
                     </select>
                 </div>
                 <div className='text-white md:ml-2'>
-                    Filter by status:
+                    Status:
                     <select
                         onChange={(e) => handleFilterStatus(e.target.value)}
-                        className='sm:ml-0 lg:ml-2 text-black cursor-pointer'
+                        className='text-black cursor-pointer ml-4'
                     >
                         <option value={'#'}>Choose status</option>
                         <option value={'alive'}>Alive</option>
@@ -95,10 +95,10 @@ const Filters = ({
                     </select>
                 </div>
                 <div className='text-white md:ml-2'>
-                    Filter by gender:
+                    Gender:
                     <select
                         onChange={(e) => handleFilterGender(e.target.value)}
-                        className='sm:ml-0 lg:ml-2 text-black cursor-pointer'
+                        className='text-black cursor-pointer ml-2'
                     >
                         <option value={'#'}>Choose gender</option>
                         <option value={'female'}>Female</option>
