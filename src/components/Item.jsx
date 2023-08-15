@@ -1,4 +1,4 @@
-const Item = ({ name, status, species, gender, location, image, id, togglePopup }) => {
+const Item = ({ name, status, species, gender, location, image, togglePopup }) => {
     return (
         <div className='flex space-x-5 bg-[#444955] rounded-xl relative'>
             {/* Image */}

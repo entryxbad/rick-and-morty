@@ -8,7 +8,6 @@ const PopupItem = ({ togglePopup, characterId }) => {
             .then((response) => response.json())
             .then((data) => {
                 setCharacterData(data)
-                console.log(characterData)
             })
             .catch((error) => {
                 console.log('Error fetching character data', error)

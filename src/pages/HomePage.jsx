@@ -68,7 +68,7 @@ const HomePage = () => {
             />
 
             {/* Content */}
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='sm:grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4'>
                 {!mainData ? (
                     <div className='col-span-3 flex justify-center items-center'>
                         <NotFound />

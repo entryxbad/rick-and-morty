@@ -45,11 +45,11 @@ const Filters = ({
     }
 
     return (
-        <div className='flex justify-between p-5 my-5 items-center bg-[#444955] rounded-xl'>
+        <div className='sm:flex-col md:flex xl:flex-row p-5 my-5 bg-[#444955] rounded-xl justify-between'>
             {/* Search */}
-            <div>
+            <div className='sm:mb-5 xl:mb-0 flex'>
                 <input
-                    className='px-2 py-2 rounded-xl'
+                    className='sm:w-full xl:w-72 2xl:w-96 px-2 py-2 rounded-xl'
                     type='search'
                     placeholder='Enter name...'
                     onChange={(e) => setSearch(e.target.value)}
@@ -65,40 +65,48 @@ const Filters = ({
             </div>
 
             {/* Filters */}
-            <div className='text-white'>
-                Filter by species:
-                <select
-                    onChange={(e) => handleFilterSpecies(e.target.value)}
-                    className='ml-2 text-black cursor-pointer'
-                >
-                    <option value={'#'}>Choose species</option>
-                    <option value={'human'}>Human</option>
-                    <option value={'humanoid'}>Humanoid</option>
-                    <option value={'alien'}>Alien</option>
-                    <option value={'animal'}>Animal</option>
-                    <option value={'robot'}>Robot</option>
-                    <option value={'mytholog'}>Mythological Creature</option>
-                    <option value={'unknown'}>Unknown</option>
-                </select>
-            </div>
-            <div className='text-white'>
-                Filter by status:
-                <select onChange={(e) => handleFilterStatus(e.target.value)} className='ml-2 text-black cursor-pointer'>
-                    <option value={'#'}>Choose status</option>
-                    <option value={'alive'}>Alive</option>
-                    <option value={'dead'}>Dead</option>
-                    <option value={'unknown'}>Unknown</option>
-                </select>
-            </div>
-            <div className='text-white'>
-                Filter by gender:
-                <select onChange={(e) => handleFilterGender(e.target.value)} className='ml-2 text-black cursor-pointer'>
-                    <option value={'#'}>Choose gender</option>
-                    <option value={'female'}>Female</option>
-                    <option value={'male'}>Male</option>
-                    <option value={'genderless '}>Genderless</option>
-                    <option value={'unknown'}>Unknown</option>
-                </select>
+            <div className='flex items-center 2xl:space-x-32'>
+                <div className='text-white'>
+                    Filter by species:
+                    <select
+                        onChange={(e) => handleFilterSpecies(e.target.value)}
+                        className='sm:ml-0 lg:ml-2 text-black cursor-pointer'
+                    >
+                        <option value={'#'}>Choose species</option>
+                        <option value={'human'}>Human</option>
+                        <option value={'humanoid'}>Humanoid</option>
+                        <option value={'alien'}>Alien</option>
+                        <option value={'animal'}>Animal</option>
+                        <option value={'robot'}>Robot</option>
+                        <option value={'mytholog'}>Mythological Creature</option>
+                        <option value={'unknown'}>Unknown</option>
+                    </select>
+                </div>
+                <div className='text-white md:ml-2'>
+                    Filter by status:
+                    <select
+                        onChange={(e) => handleFilterStatus(e.target.value)}
+                        className='sm:ml-0 lg:ml-2 text-black cursor-pointer'
+                    >
+                        <option value={'#'}>Choose status</option>
+                        <option value={'alive'}>Alive</option>
+                        <option value={'dead'}>Dead</option>
+                        <option value={'unknown'}>Unknown</option>
+                    </select>
+                </div>
+                <div className='text-white md:ml-2'>
+                    Filter by gender:
+                    <select
+                        onChange={(e) => handleFilterGender(e.target.value)}
+                        className='sm:ml-0 lg:ml-2 text-black cursor-pointer'
+                    >
+                        <option value={'#'}>Choose gender</option>
+                        <option value={'female'}>Female</option>
+                        <option value={'male'}>Male</option>
+                        <option value={'genderless '}>Genderless</option>
+                        <option value={'unknown'}>Unknown</option>
+                    </select>
+                </div>
             </div>
         </div>
     )
