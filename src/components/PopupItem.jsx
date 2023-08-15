@@ -28,7 +28,7 @@ const PopupItem = ({ togglePopup, characterId }) => {
                         <img src={characterData.image} alt={characterData.name} />
                     </>
                 ) : (
-                    <p>Загрузка...</p>
+                    <p>Loading...</p>
                 )}
                 <button
                     className='mt-3 text-white bg-[#2c3038] rounded-xl p-2 hover:text-black hover:bg-white'

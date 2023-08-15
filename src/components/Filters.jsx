@@ -30,17 +30,14 @@ const Filters = ({
 
     const handleFilterSpecies = (species) => {
         setSelectedSpecies(species)
-        console.log(species)
         searchCharacter(search, species, selectedStatus, selectedGender)
     }
     const handleFilterStatus = (status) => {
         setSelectedStatus(status)
-        console.log(status)
         searchCharacter(search, selectedSpecies, status, selectedGender)
     }
     const handleFilterGender = (gender) => {
         setSelectedGender(gender)
-        console.log(gender)
         searchCharacter(search, selectedSpecies, selectedStatus, gender)
     }
 
@@ -52,7 +49,10 @@ const Filters = ({
                     className='px-2 rounded-xl w-full lg:w-56 xl:w-[26rem]'
                     type='search'
                     placeholder='Enter name...'
-                    onChange={(e) => setSearch(e.target.value)}
+                    onChange={(e) => {
+                        setSearch(e.target.value)
+                        if (e.target.value === '') searchCharacter()
+                    }}
                     onKeyDown={handleKey}
                     value={search}
                 />
@@ -65,7 +65,7 @@ const Filters = ({
             </div>
 
             {/* Filters */}
-            <div className='space-y-2 md:flex items-baseline 2xl:space-x-20'>
+            <div className='space-y-2 md:flex items-baseline 2xl:space-x-20 2xl:pr-40'>
                 <div className='text-white'>
                     Species:
                     <select

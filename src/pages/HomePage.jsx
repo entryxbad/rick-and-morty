@@ -23,7 +23,6 @@ const HomePage = () => {
         fetchAllCharacters()
             .then((response) => {
                 setMainData(response.results)
-                console.log('data', response.results)
             })
             .catch((error) => {
                 console.log('Error from HomePage', error)
@@ -69,7 +68,7 @@ const HomePage = () => {
             {/* Content */}
             <div className='grid gap-4 grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3'>
                 {!mainData ? (
-                    <div className='flex justify-center items-center'>
+                    <div className='flex justify-center items-center lg:col-span-3'>
                         <NotFound />
                     </div>
                 ) : (
