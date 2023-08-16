@@ -1,4 +1,4 @@
-const Item = ({ name, status, species, gender, location, image, togglePopup }) => {
+const CharacterCard = ({ name, status, species, gender, location, image, onCardClick }) => {
     return (
         <div className='flex space-x-2 bg-[#444955] rounded-xl relative sm:space-x-4'>
             {/* Image */}
@@ -8,7 +8,7 @@ const Item = ({ name, status, species, gender, location, image, togglePopup }) =
             {/* Description */}
             <div className='flex-1'>
                 <div>
-                    <span className='text-white text-base font-bold sm:text-2xl' onClick={togglePopup}>
+                    <span className='text-white text-base font-bold sm:text-2xl' onClick={onCardClick}>
                         {name}
                     </span>
                     <span className='text-white text-base flex items-center sm:text-lg'>
@@ -31,7 +31,7 @@ const Item = ({ name, status, species, gender, location, image, togglePopup }) =
             </div>
             <div
                 className='absolute right-2 bottom-2 bg-[#2c3038] rounded-xl p-2 text-white hover:text-black hover:bg-white'
-                onClick={togglePopup}
+                onClick={onCardClick}
             >
                 <button>Show more</button>
             </div>
@@ -39,4 +39,4 @@ const Item = ({ name, status, species, gender, location, image, togglePopup }) =
     )
 }
 
-export default Item
+export default CharacterCard

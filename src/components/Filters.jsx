@@ -1,19 +1,19 @@
 const Filters = ({
-    search,
-    setSearch,
-    selectedSpecies,
-    setSelectedSpecies,
-    selectedStatus,
-    setSelectedStatus,
-    selectedGender,
-    setSelectedGender,
-    searchCharacter,
+    onSearch,
+    onSetSearch,
+    onSpeciesSelect,
+    onSetSpeciesSelect,
+    onStatusSelect,
+    onSetStatusSelect,
+    onGenderSelect,
+    onSetGenderSelect,
+    onCharacterSearch,
 }) => {
     const checkFilters = () => {
-        if (search !== '') {
-            searchCharacter(search, selectedSpecies, selectedStatus, selectedGender)
+        if (onSearch !== '') {
+            onCharacterSearch(onSearch, onSpeciesSelect, onStatusSelect, onGenderSelect)
         } else {
-            searchCharacter('', selectedSpecies, selectedStatus, selectedGender)
+            onCharacterSearch('', onSpeciesSelect, onStatusSelect, onGenderSelect)
         }
     }
 
@@ -23,22 +23,22 @@ const Filters = ({
         }
     }
 
-    const buttonClick = () => {
-        searchCharacter(search, selectedSpecies, selectedStatus, selectedGender)
+    const handleButtonClick = () => {
         checkFilters()
     }
 
     const handleFilterSpecies = (species) => {
-        setSelectedSpecies(species)
-        searchCharacter(search, species, selectedStatus, selectedGender)
+        onSetSpeciesSelect(species)
+        onCharacterSearch(onSearch, species, onStatusSelect, onGenderSelect)
     }
+
     const handleFilterStatus = (status) => {
-        setSelectedStatus(status)
-        searchCharacter(search, selectedSpecies, status, selectedGender)
+        onSetStatusSelect(status)
+        onCharacterSearch(onSearch, onSpeciesSelect, status, onGenderSelect)
     }
     const handleFilterGender = (gender) => {
-        setSelectedGender(gender)
-        searchCharacter(search, selectedSpecies, selectedStatus, gender)
+        onSetGenderSelect(gender)
+        onCharacterSearch(onSearch, onSpeciesSelect, onStatusSelect, gender)
     }
 
     return (
@@ -50,15 +50,15 @@ const Filters = ({
                     type='search'
                     placeholder='Enter name...'
                     onChange={(e) => {
-                        setSearch(e.target.value)
-                        if (e.target.value === '') searchCharacter()
+                        onSetSearch(e.target.value)
+                        if (e.target.value === '') onCharacterSearch()
                     }}
                     onKeyDown={handleKey}
-                    value={search}
+                    value={onSearch}
                 />
                 <button
                     className='bg-[#2c3038] p-2 rounded-xl ml-2 cursor-pointer text-white hover:text-black hover:bg-white'
-                    onClick={buttonClick}
+                    onClick={handleButtonClick}
                 >
                     Search
                 </button>
@@ -103,7 +103,7 @@ const Filters = ({
                         <option value={'#'}>Choose gender</option>
                         <option value={'female'}>Female</option>
                         <option value={'male'}>Male</option>
-                        <option value={'genderless '}>Genderless</option>
+                        <option value={'genderless'}>Genderless</option>
                         <option value={'unknown'}>Unknown</option>
                     </select>
                 </div>

@@ -8,9 +8,23 @@ const fetchAllCharacters = async () => {
         const data = await response.json()
         return data
     } catch (error) {
-        console.log('Error from fetchAllCharacters', error)
+        console.log('Error from fetchAllCharacters:', error)
         throw error
     }
 }
 
-export { fetchAllCharacters }
+const fetchCharacter = async (characterId) => {
+    try {
+        const response = await fetch(`https://rickandmortyapi.com/api/character/${characterId}`)
+        if (!response.ok) {
+            const errorMessage = `Response status: ${response.status} - ${response.statusText}`
+            throw new Error(errorMessage)
+        }
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.log('Error from fetchCharacter:', error)
+    }
+}
+
+export { fetchAllCharacters, fetchCharacter }

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import Item from '../components/Item'
+import CharacterCard from '../components/CharacterCard'
 import { fetchAllCharacters } from '../config/api'
 import NotFound from './NotFound'
 import Filters from '../components/Filters'
-import PopupItem from '../components/PopupItem'
+import CharacterModal from '../components/CharacterModal'
 
 const HomePage = () => {
     const [mainData, setMainData] = useState([])
@@ -14,7 +14,7 @@ const HomePage = () => {
     const [visible, setVisible] = useState(false)
     const [selectedCharacterId, setSelectedCharacterId] = useState(null)
 
-    const togglePopup = (characterId) => {
+    const onCardClick = (characterId) => {
         setSelectedCharacterId(characterId)
         setVisible(!visible)
     }
@@ -30,18 +30,12 @@ const HomePage = () => {
     }, [])
 
     const searchCharacter = (strName, typeSpecies, typeStatus, typeGender) => {
-        let apiUrl = 'https://rickandmortyapi.com/api/character'
+        let apiUrl = new URL('https://rickandmortyapi.com/api/character')
 
-        const queryParams = []
-
-        if (strName) queryParams.push(`name=${strName}`)
-        if (typeSpecies) queryParams.push(`species=${typeSpecies}`)
-        if (typeStatus) queryParams.push(`status=${typeStatus}`)
-        if (typeGender) queryParams.push(`gender=${typeGender}`)
-
-        if (queryParams.length > 0) {
-            apiUrl += `?${queryParams.join('&')}`
-        }
+        apiUrl.searchParams.set('name', `${strName}`)
+        apiUrl.searchParams.set('species', `${typeSpecies}`)
+        apiUrl.searchParams.set('status', `${typeStatus}`)
+        apiUrl.searchParams.set('gender', `${typeGender}`)
 
         fetch(apiUrl)
             .then((response) => response.json())
@@ -54,15 +48,15 @@ const HomePage = () => {
         <div className='mx-5 pb-5'>
             {/* Filter */}
             <Filters
-                search={search}
-                setSearch={setSearch}
-                selectedSpecies={selectedSpecies}
-                setSelectedSpecies={setSelectedSpecies}
-                selectedStatus={selectedStatus}
-                setSelectedStatus={setSelectedStatus}
-                selectedGender={selectedGender}
-                setSelectedGender={setSelectedGender}
-                searchCharacter={searchCharacter}
+                onSearch={search}
+                onSetSearch={setSearch}
+                onSpeciesSelect={selectedSpecies}
+                onSetSpeciesSelect={setSelectedSpecies}
+                onStatusSelect={selectedStatus}
+                onSetStatusSelect={setSelectedStatus}
+                onGenderSelect={selectedGender}
+                onSetGenderSelect={setSelectedGender}
+                onCharacterSearch={searchCharacter}
             />
 
             {/* Content */}
@@ -73,7 +67,7 @@ const HomePage = () => {
                     </div>
                 ) : (
                     mainData.map((item) => (
-                        <Item
+                        <CharacterCard
                             key={item.id}
                             id={item.id}
                             image={item.image}
@@ -82,12 +76,12 @@ const HomePage = () => {
                             species={item.species}
                             gender={item.gender}
                             location={item.location.name}
-                            togglePopup={() => togglePopup(item.id)}
+                            onCardClick={() => onCardClick(item.id)}
                         />
                     ))
                 )}
             </div>
-            {visible && <PopupItem togglePopup={() => togglePopup(null)} characterId={selectedCharacterId} />}
+            {visible && <CharacterModal onCardClick={() => onCardClick(null)} characterId={selectedCharacterId} />}
         </div>
     )
 }

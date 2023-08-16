@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
+import { fetchCharacter } from '../config/api'
 
-const PopupItem = ({ togglePopup, characterId }) => {
+const CharacterModal = ({ onCardClick, characterId }) => {
     const [characterData, setCharacterData] = useState(null)
 
     useEffect(() => {
-        fetch(`https://rickandmortyapi.com/api/character/${characterId}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setCharacterData(data)
+        fetchCharacter(characterId)
+            .then((response) => {
+                setCharacterData(response)
             })
             .catch((error) => {
-                console.log('Error fetching character data', error)
+                console.log('Error from CharacterModal:', error)
             })
     }, [characterId])
 
@@ -32,7 +32,7 @@ const PopupItem = ({ togglePopup, characterId }) => {
                 )}
                 <button
                     className='mt-3 text-white bg-[#2c3038] rounded-xl p-2 hover:text-black hover:bg-white'
-                    onClick={togglePopup}
+                    onClick={onCardClick}
                 >
                     Close
                 </button>
@@ -41,4 +41,4 @@ const PopupItem = ({ togglePopup, characterId }) => {
     )
 }
 
-export default PopupItem
+export default CharacterModal
